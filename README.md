@@ -14,6 +14,8 @@ Dive into a wood-fired oven, watch a pizza build itself from dough to box, brows
 [![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?logo=greensock&logoColor=white)](https://gsap.com)
 [![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com)
 
+### [🔗 Live demo → slice-of-life-sable.vercel.app](https://slice-of-life-sable.vercel.app)
+
 </div>
 
 ---
