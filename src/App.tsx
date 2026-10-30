@@ -12,6 +12,7 @@ import { Footer } from "@/components/Footer";
 import { useSmoothScroll } from "@/lib/smoothScroll";
 import { Marquee } from "@/components/Marquee";
 import { Cursor } from "@/components/Cursor";
+import { CartDrawer } from "@/components/CartDrawer";
 import { useI18n } from "@/i18n";
 import { useEffect } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -43,6 +44,7 @@ export default function App() {
       </main>
       <Footer />
       <FloatingCta />
+      <CartDrawer />
       <Cursor />
     </div>
   );

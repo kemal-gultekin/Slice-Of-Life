@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
-import { ArrowUpRight, Clock, MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, Phone } from "lucide-react";
 import fire from "@/assets/oven-fire.webp";
 import { siteConfig } from "@/config/siteConfig";
 import { menu } from "@/data/menu";
 import { useOpenNow } from "@/lib/openNow";
-import { buildWhatsAppUrl, itemOrderMessage } from "@/utils/whatsapp";
 import { useI18n } from "@/i18n";
+import { useCart } from "@/lib/cart";
+import { Plus, ShoppingBag } from "lucide-react";
 import { WhatsAppButton } from "./WhatsAppButton";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -16,6 +17,7 @@ const quickPicks = ["bbq-chicken-calzone", "deluxe-veggie-calzone", "mini-margar
 export function OrderSection() {
   const open = useOpenNow();
   const { t, cat } = useI18n();
+  const cart = useCart();
   return (
     <section id="contact" className="relative scroll-mt-16 overflow-hidden px-5 py-28 md:scroll-mt-20 md:px-10 md:py-40" aria-labelledby="order-title">
       <img src={fire} alt="" aria-hidden loading="lazy" className="absolute inset-0 size-full scale-110 object-cover opacity-50 blur-2xl" />
@@ -73,13 +75,14 @@ export function OrderSection() {
 
           <ul className="mt-7 grid grid-cols-1 gap-2">
             {quickPicks.map((m, i) => {
-              const url = buildWhatsAppUrl(itemOrderMessage(m.name, 1, m.price, t.wa.item));
+              const inCart = cart.lines.find((l) => l.item.id === m.id)?.qty ?? 0;
               return (
                 <motion.li key={m.id} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease, delay: 0.3 + i * 0.06 }}>
-                  <a
-                    href={url ?? "#menu"}
-                    {...(url ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                    className="group flex items-center gap-4 rounded-2xl border border-cream/10 bg-ink/30 p-3 pr-4 transition-colors hover:border-tomato/50 hover:bg-ink/50"
+                  <button
+                    type="button"
+                    onClick={() => cart.add(m.id)}
+                    aria-label={`${t.cart.add}: ${m.name}`}
+                    className="group flex w-full items-center gap-4 rounded-2xl text-left border border-cream/10 bg-ink/30 p-3 pr-4 transition-colors hover:border-tomato/50 hover:bg-ink/50"
                   >
                     {m.image ? (
                       <img src={m.image} alt="" loading="lazy" className="size-12 shrink-0 rounded-xl object-cover" />
@@ -91,15 +94,28 @@ export function OrderSection() {
                       <span className="text-xs text-cream/50">{cat(m.category)}</span>
                     </span>
                     {m.price != null && <span className="font-display text-xl text-cream">₺{m.price}</span>}
-                    <ArrowUpRight className="size-4 shrink-0 text-tomato transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-                  </a>
+                    <span className="relative grid size-8 shrink-0 place-items-center rounded-full bg-tomato/15 text-tomato transition-colors group-hover:bg-tomato group-hover:text-mozz">
+                      <Plus className="size-4" />
+                      {inCart > 0 && (
+                        <motion.span key={inCart} initial={{ scale: 0.4 }} animate={{ scale: 1 }} className="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-mozz text-[0.65rem] font-bold text-ink">
+                          {inCart}
+                        </motion.span>
+                      )}
+                    </span>
+                  </button>
                 </motion.li>
               );
             })}
           </ul>
 
           <div className="mt-6 flex flex-wrap gap-3 border-t border-cream/10 pt-6">
-            <WhatsAppButton variant="primary" className="flex-1">{t.order.chat}</WhatsAppButton>
+            {cart.count > 0 ? (
+              <button type="button" onClick={cart.open} className="btn btn-primary flex-1">
+                <ShoppingBag className="size-4" aria-hidden /> {t.cart.view} · {cart.count}
+              </button>
+            ) : (
+              <WhatsAppButton variant="primary" className="flex-1">{t.order.chat}</WhatsAppButton>
+            )}
             <a href="#menu" className="btn btn-ghost flex-1">{t.order.fullMenu}</a>
           </div>
         </motion.div>

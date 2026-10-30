@@ -18,7 +18,7 @@ describe("MenuSection", () => {
     fireEvent.click(screen.getByRole("button", { name: /garlic cheesy bread/i }));
     const dialog = await screen.findByRole("dialog");
     fireEvent.click(within(dialog).getByRole("button", { name: /increase quantity/i }));
-    const link = within(dialog).getByRole("link", { name: /order on whatsapp/i });
+    const link = within(dialog).getByRole("link", { name: /order just this on whatsapp/i });
     expect(decodeURIComponent(link.getAttribute("href") ?? "")).toContain("2× Garlic Cheesy Bread (₺680)");
   });
 
@@ -29,7 +29,7 @@ describe("MenuSection", () => {
     fireEvent.change(screen.getByPlaceholderText(/menüde ara/i), { target: { value: "garlic cheesy" } });
     fireEvent.click(screen.getByRole("button", { name: /garlic cheesy bread/i }));
     const dialog = await screen.findByRole("dialog");
-    const link = within(dialog).getByRole("link", { name: /whatsapp'tan sipariş/i });
+    const link = within(dialog).getByRole("link", { name: /sadece bunu whatsapp/i });
     expect(decodeURIComponent(link.getAttribute("href") ?? "")).toContain("1 adet Garlic Cheesy Bread (₺340)");
   });
 });

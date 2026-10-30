@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, ShoppingBag } from "lucide-react";
+import { motion } from "framer-motion";
+import { useCart } from "@/lib/cart";
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { LangSwitch } from "./LangSwitch";
@@ -21,6 +23,7 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
   const { t } = useI18n();
   const navLinks = useNavLinks();
+  const cart = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -44,8 +47,16 @@ export function Navbar() {
             </li>
           ))}
         </ul>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3">
           <LangSwitch />
+          <button type="button" onClick={cart.open} aria-label={`${t.cart.open} · ${t.cart.count(cart.count)}`} className="glass relative grid size-10 place-items-center rounded-full text-mozz">
+            <ShoppingBag className="size-4" />
+            {cart.count > 0 && (
+              <motion.span key={cart.count} initial={{ scale: 0.3 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 600, damping: 15 }} className="absolute -right-1 -top-1 grid min-w-5 place-items-center rounded-full bg-tomato px-1 text-[0.65rem] font-bold text-mozz">
+                {cart.count}
+              </motion.span>
+            )}
+          </button>
           <a href="#menu" className="btn btn-primary hidden !py-3 sm:inline-flex">{t.nav.order}</a>
           <button
             type="button"

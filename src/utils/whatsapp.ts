@@ -34,3 +34,25 @@ export function itemOrderMessage(
   const total = unitPrice != null ? formatPrice(unitPrice * qty) : null;
   return fmt(qty, name, total);
 }
+
+export type OrderDetails = { mode: "delivery" | "pickup"; name: string; address: string; note: string };
+export type OrderLabels = {
+  hello: string; subtotal: string; delivery: string; pickup: string; name: string;
+  address: string; note: string; outro: string; priceOnReq: string;
+};
+
+/** One WhatsApp message for the whole cart. */
+export function cartOrderMessage(
+  lines: { name: string; qty: number; lineTotal: number | null }[],
+  subtotal: number,
+  d: OrderDetails,
+  L: OrderLabels,
+) {
+  const rows = lines.map((l) => `• ${l.qty}× ${l.name} — ${l.lineTotal != null ? formatPrice(l.lineTotal) : L.priceOnReq}`);
+  const out = [L.hello, ...rows, "", `${L.subtotal}: ${formatPrice(subtotal)}`, `${d.mode === "delivery" ? L.delivery : L.pickup}`];
+  if (d.name.trim()) out.push(`${L.name}: ${d.name.trim()}`);
+  if (d.mode === "delivery" && d.address.trim()) out.push(`${L.address}: ${d.address.trim()}`);
+  if (d.note.trim()) out.push(`${L.note}: ${d.note.trim()}`);
+  out.push("", L.outro);
+  return out.join("\n");
+}

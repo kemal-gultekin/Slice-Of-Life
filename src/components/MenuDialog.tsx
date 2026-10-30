@@ -5,8 +5,10 @@ import { Minus, Plus, X } from "lucide-react";
 import type { MenuItem } from "@/data/menu";
 import { formatPrice, itemOrderMessage } from "@/utils/whatsapp";
 import { lockScroll } from "@/lib/smoothScroll";
-import { WhatsAppButton } from "./WhatsAppButton";
 import { useI18n } from "@/i18n";
+import { useCart } from "@/lib/cart";
+import { buildWhatsAppUrl } from "@/utils/whatsapp";
+import { ShoppingBag } from "lucide-react";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -14,6 +16,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export function MenuDialog({ item: raw, onClose }: { item: MenuItem | null; onClose: () => void }) {
   const { t, cat, item: loc } = useI18n();
   const item = raw ? loc(raw) : null;
+  const cart = useCart();
   const [qty, setQty] = useState(1);
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -123,9 +126,24 @@ export function MenuDialog({ item: raw, onClose }: { item: MenuItem | null; onCl
                       <span className="eyebrow text-cream/50">{t.menu.priceOnRequest}</span>
                     )}
                   </div>
-                  <WhatsAppButton message={itemOrderMessage(item.name, qty, item.price, t.wa.item)} variant="primary" className="mt-5 w-full">
-                    {t.menu.orderWa}
-                  </WhatsAppButton>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      cart.add(item.id, qty);
+                      onClose();
+                    }}
+                    className="btn btn-primary mt-5 w-full"
+                  >
+                    <ShoppingBag className="size-4" aria-hidden /> {t.cart.add}
+                  </button>
+                  {(() => {
+                    const url = buildWhatsAppUrl(itemOrderMessage(item.name, qty, item.price, t.wa.item));
+                    return url ? (
+                      <a href={url} target="_blank" rel="noopener noreferrer" className="mt-3 block text-center text-sm text-cream/55 underline-offset-4 transition-colors hover:text-mozz hover:underline">
+                        {t.cart.orderOnlyThis}
+                      </a>
+                    ) : null;
+                  })()}
                   {item.image && <p className="mt-4 text-xs text-cream/40">{t.menu.illustration}</p>}
                 </div>
               </motion.div>
