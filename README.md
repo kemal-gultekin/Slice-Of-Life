@@ -2,6 +2,8 @@
 
 Cinematic one-page site for Slice of Life, Lefkoşa. Built with React + Vite (plain SPA, no Lovable dependency), Tailwind v4, GSAP ScrollTrigger, Framer Motion and Lucide.
 
+**Live demo:** https://slice-of-life-sable.vercel.app
+
 ## Run
 ```
 npm install
@@ -13,6 +15,9 @@ npm test
 ## Deploy
 `dist/` is a static site: drop it on Vercel, Netlify or Cloudflare Pages
 (build command `npm run build`, output folder `dist`).
+
+Production runs on Vercel, connected to this repo: every push to `main` redeploys
+https://slice-of-life-sable.vercel.app automatically.
 
 ## Edit content
 - **Business info / WhatsApp number:** `src/config/siteConfig.ts` — `whatsappNumber` is international format, digits only (e.g. `905338560333`). Set to `""` to disable WhatsApp buttons.
