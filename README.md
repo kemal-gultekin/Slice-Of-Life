@@ -1,8 +1,8 @@
-# Slice of Life — website
+# Crust & Ember — website
 
-Cinematic one-page site for Slice of Life, Lefkoşa. Built with React + Vite (plain SPA, no Lovable dependency), Tailwind v4, GSAP ScrollTrigger, Framer Motion and Lucide.
+Cinematic one-page site for Crust & Ember, a fictional pizzeria in Lefkoşa used as a demo brand. Built with React + Vite (plain SPA, no Lovable dependency), Tailwind v4, GSAP ScrollTrigger, Framer Motion and Lucide.
 
-**Live demo:** https://slice-of-life-sable.vercel.app
+**Live demo:** https://crust-and-ember.vercel.app
 
 ## Run
 ```
@@ -17,22 +17,16 @@ npm test
 (build command `npm run build`, output folder `dist`).
 
 Production runs on Vercel, connected to this repo: every push to `main` redeploys
-https://slice-of-life-sable.vercel.app automatically.
+https://crust-and-ember.vercel.app automatically.
 
 ## Edit content
-- **Business info / WhatsApp number:** `src/config/siteConfig.ts` — `whatsappNumber` is international format, digits only (e.g. `905338560333`). Set to `""` to disable WhatsApp buttons.
-- **Menu:** `src/data/menu.ts` — name, description, ingredients, `price` (TRY; use `null` if unverified), optional `image`, `dietary`. `signatureId` picks the spotlight dish.
+- **Business info / WhatsApp number:** `src/config/siteConfig.ts` — `whatsappNumber` is international format, digits only (e.g. `905550000000`). The demo ships with `""`, which disables the WhatsApp buttons; `phoneDisplay` and `mapUrl` are hidden when empty.
+- **Menu:** `src/data/menu.ts` — name, description, ingredients, `price` (TRY; use `null` for "Price on request"), optional `image`, `dietary`. `signatureId` picks the spotlight dish.
 - **Gallery:** `src/data/gallery.ts`.
-- **Images:** replace files in `src/assets/` keeping the same filename. The six pizza-story images (`stage-*.jpg`, `box-open.jpg`) must keep the same square framing and pizza position so layers line up.
-
-## Still needed from the owner
-- Real photos of the restaurant, team and dishes (current images are AI-generated illustrations).
-- Full pizza menu with prices (the current site lists only the Mini Margarita and two calzones).
-- Verified Instagram / Facebook links (`socials` in siteConfig).
-- Dietary information per dish.
+- **Images:** replace files in `src/assets/` keeping the same filename. The six pizza-story images (`stage-*.webp`, `box-open.webp`) must keep the same square framing and pizza position so layers line up.
 
 ## Photo credits
-Oven-dive photos are from Unsplash (free under the Unsplash License):
+Dish, story and gallery images are AI-generated illustrations. Oven-dive photos are from Unsplash (free under the Unsplash License):
 - `oven-outer.webp` — https://unsplash.com/photos/souvaTHUJkY
 - `oven-arch.webp` — https://unsplash.com/photos/4GNyMaoOV8c
 - `oven-fire.webp` — https://unsplash.com/photos/U_2AlnfIGIU

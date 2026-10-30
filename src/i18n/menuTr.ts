@@ -22,7 +22,7 @@ export const menuTr = {
   descriptions: {
     "mini-margarita": "Küçük menümüzden 15 cm Margarita — sade, klasik, taze hazırlanır.",
     "bbq-chicken-calzone": "Tavuk, mantar ve mısırın BBQ sosla birlikte pizza hamuruna sarılıp fırınlandığı calzone.",
-    "deluxe-veggie-calzone": "Bol sebzeli, Slice of Life'ın özel sosuyla tamamlanan calzone.",
+    "deluxe-veggie-calzone": "Bol sebzeli, Crust & Ember'ın özel sosuyla tamamlanan calzone.",
     "garlic-cheesy-bread": "Fırından yeni çıkmış sarımsaklı ve peynirli ekmek.",
     "sharing-plate":
       "Buffalo kanat, tavuk tenders, soğan halkası, mozzarella çubukları ve dolgulu patates kabuğu; blue cheese, BBQ ve ballı hardal soslarıyla.",

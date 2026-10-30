@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { menu, type MenuItem } from "@/data/menu";
 
-const KEY = "sol-cart";
+const KEY = "ce-cart";
 const MAX = 50;
 const byId = new Map(menu.map((m) => [m.id, m]));
 

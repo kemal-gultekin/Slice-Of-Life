@@ -38,20 +38,22 @@ export function OrderSection() {
           <p className="mt-6 max-w-md text-lg text-cream/70">{t.order.sub}</p>
 
           <address className="mt-12 grid gap-5 not-italic sm:grid-cols-2">
-            <a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer" className="group flex gap-4">
+            <a href={siteConfig.mapUrl || undefined} target="_blank" rel="noopener noreferrer" className="group flex gap-4">
               <span className="glass grid size-11 shrink-0 place-items-center rounded-xl text-tomato"><MapPin className="size-4" /></span>
               <span>
                 <span className="eyebrow block text-cream/45">{t.order.find}</span>
                 <span className="text-cream/85 transition-colors group-hover:text-mozz">{siteConfig.address}</span>
               </span>
             </a>
-            <a href={`tel:+${siteConfig.whatsappNumber}`} className="group flex gap-4">
-              <span className="glass grid size-11 shrink-0 place-items-center rounded-xl text-tomato"><Phone className="size-4" /></span>
-              <span>
-                <span className="eyebrow block text-cream/45">{t.order.call}</span>
-                <span className="text-cream/85 transition-colors group-hover:text-mozz">{siteConfig.phoneDisplay}</span>
-              </span>
-            </a>
+            {siteConfig.phoneDisplay && (
+              <a href={`tel:+${siteConfig.whatsappNumber}`} className="group flex gap-4">
+                <span className="glass grid size-11 shrink-0 place-items-center rounded-xl text-tomato"><Phone className="size-4" /></span>
+                <span>
+                  <span className="eyebrow block text-cream/45">{t.order.call}</span>
+                  <span className="text-cream/85 transition-colors group-hover:text-mozz">{siteConfig.phoneDisplay}</span>
+                </span>
+              </a>
+            )}
             <p className="flex gap-4">
               <span className="glass grid size-11 shrink-0 place-items-center rounded-xl text-tomato"><Clock className="size-4" /></span>
               <span>

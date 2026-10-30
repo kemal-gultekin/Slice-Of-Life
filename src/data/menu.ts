@@ -4,8 +4,8 @@ import ingredients from "@/assets/gallery-ingredients.webp";
 import baked from "@/assets/stage-baked.webp";
 
 /**
- * Menu — names, descriptions and prices verified from sliceoflife.site (prices in Turkish lira).
- * price: null means "not verified — ask via WhatsApp". Never put guessed prices here.
+ * Menu — names, descriptions and prices (Turkish lira) for the demo brand.
+ * price: null means "price on request".
  * Images are art-directed illustrations of each dish; replace with real photos when available.
  */
 export type MenuItem = {
@@ -48,7 +48,7 @@ export const menu: MenuItem[] = [
     id: "deluxe-veggie-calzone",
     name: "Deluxe Veggie Calzone",
     category: "Pizza & Calzone",
-    description: "Packed with vegetables and finished with Slice of Life's special sauce.",
+    description: "Packed with vegetables and finished with Crust & Ember's special sauce.",
     ingredients: ["Mozzarella", "Mushrooms", "Green peppers", "Onion", "Olives", "Sweetcorn", "Special sauce"],
     price: 670,
     image: baked,
@@ -63,7 +63,7 @@ export const menu: MenuItem[] = [
   },
   {
     id: "sharing-plate",
-    name: "Slice of Life Sharing Plate",
+    name: "Crust & Ember Sharing Plate",
     category: "Starters",
     description: "Buffalo wings, chicken tenders, onion rings, mozzarella sticks and loaded potato skin with blue cheese, BBQ and honey mustard dips.",
     ingredients: ["Buffalo wings", "Chicken tenders", "Onion rings", "Mozzarella sticks", "Loaded potato skin"],
@@ -147,7 +147,7 @@ export const menu: MenuItem[] = [
   x("Cobb Salad", "Salads", 740),
   x("Halloumi/Hellim", "Salads", 520),
   x("Rocket & Parmesan Salad", "Salads", 450),
-  x("Slice of Life Mixed Salad", "Salads", 510),
+  x("Crust & Ember Mixed Salad", "Salads", 510),
   x("Beef Vindaloo (220g)", "Indian", 880),
   x("Chicken Korma", "Indian", 710),
   x("Chicken Tika Masala", "Indian", 710),
@@ -155,7 +155,7 @@ export const menu: MenuItem[] = [
   x("Sweet and Sour Chicken", "Chinese", 785),
   x("Sweet Chilli Chicken", "Chinese", 785),
   x("Chocolate Delight", "Desserts", 610),
-  x("Slice Of Life Special Kokteyl", "Cocktails", 280),
+  x("Crust & Ember Special Kokteyl", "Cocktails", 280),
   x("Wallnut Dream", "Desserts", 610),
   x("Americano", "Hot Drinks", 210),
   x("Cafe Latte", "Hot Drinks", 230),

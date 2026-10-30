@@ -14,13 +14,13 @@ describe("cart", () => {
         { name: "English Tea", qty: 1, lineTotal: null },
       ],
       1380,
-      { mode: "delivery", name: "Kemal", address: "Ortaköy", note: "" },
+      { mode: "delivery", name: "Kemal", address: "Lefkoşa", note: "" },
       en.cart.msg,
     );
     expect(msg).toContain("• 2× BBQ Chicken Calzone — ₺1.380");
     expect(msg).toContain("• 1× English Tea — price on request");
     expect(msg).toContain("Subtotal: ₺1.380");
-    expect(msg).toContain("Address: Ortaköy");
+    expect(msg).toContain("Address: Lefkoşa");
     expect(msg).not.toContain("Note:");
   });
 
@@ -38,7 +38,7 @@ describe("cart", () => {
       const dialog = await screen.findByRole("dialog");
       fireEvent.click(within(dialog).getByRole("button", { name: /add to cart/i }));
     }
-    expect(localStorage.getItem("sol-cart")).toContain("garlic-cheesy-bread");
-    expect(localStorage.getItem("sol-cart")).toContain("onion-rings");
+    expect(localStorage.getItem("ce-cart")).toContain("garlic-cheesy-bread");
+    expect(localStorage.getItem("ce-cart")).toContain("onion-rings");
   });
 });

@@ -1,9 +1,15 @@
 import { fireEvent, screen, within } from "@testing-library/react";
 import { renderWithLang } from "./utils";
-import { describe, expect, it } from "vitest";
+import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { MenuSection } from "@/components/MenuSection";
+import { siteConfig } from "@/config/siteConfig";
 
 describe("MenuSection", () => {
+  // the demo brand ships without a number; order links need one to render
+  const configured = siteConfig.whatsappNumber;
+  beforeAll(() => { siteConfig.whatsappNumber = "905550000000"; });
+  afterAll(() => { siteConfig.whatsappNumber = configured; });
+
   it("filters by search across categories", () => {
     renderWithLang(<MenuSection />);
     fireEvent.change(screen.getByPlaceholderText(/search the menu/i), { target: { value: "frappe" } });

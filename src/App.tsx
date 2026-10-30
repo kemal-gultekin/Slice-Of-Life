@@ -6,7 +6,7 @@ import { BrandStory } from "@/components/BrandStory";
 import { MenuSection } from "@/components/MenuSection";
 import { SignaturePizza } from "@/components/SignaturePizza";
 import { Gallery } from "@/components/Gallery";
-import { WhySliceOfLife } from "@/components/WhySliceOfLife";
+import { WhyUs } from "@/components/WhyUs";
 import { OrderSection } from "@/components/OrderSection";
 import { Footer } from "@/components/Footer";
 import { useSmoothScroll } from "@/lib/smoothScroll";
@@ -39,7 +39,7 @@ export default function App() {
         <SignaturePizza />
         <Gallery />
         <Marquee words={t.marquee} />
-        <WhySliceOfLife />
+        <WhyUs />
         <OrderSection />
       </main>
       <Footer />

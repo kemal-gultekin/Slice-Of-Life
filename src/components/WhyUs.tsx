@@ -32,7 +32,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
   return <span ref={ref} className="tabular-nums">0{suffix}</span>;
 }
 
-export function WhySliceOfLife() {
+export function WhyUs() {
   const { t } = useI18n();
   const stats = [
     { value: menu.length, suffix: "", label: t.why.stats[0]! },

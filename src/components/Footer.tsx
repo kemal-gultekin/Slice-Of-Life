@@ -6,7 +6,7 @@ import { useI18n } from "@/i18n";
 import { WhatsAppButton } from "./WhatsAppButton";
 
 const ease = [0.22, 1, 0.36, 1] as const;
-const word = "Slice of Life";
+const word = siteConfig.name;
 
 /** Sits underneath the page and is uncovered as the last section scrolls away. */
 export function Footer() {
@@ -36,9 +36,15 @@ export function Footer() {
           </nav>
           <address className="grid content-start gap-4 not-italic text-ink/80 md:col-span-2 md:grid-cols-2">
             <p className="eyebrow text-ink/45 md:col-span-2">{t.footer.visit}</p>
-            <a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer" className="flex gap-3 hover:text-tomato"><MapPin className="mt-0.5 size-4 shrink-0" />{siteConfig.address}</a>
+            {siteConfig.mapUrl ? (
+              <a href={siteConfig.mapUrl} target="_blank" rel="noopener noreferrer" className="flex gap-3 hover:text-tomato"><MapPin className="mt-0.5 size-4 shrink-0" />{siteConfig.address}</a>
+            ) : (
+              <p className="flex gap-3"><MapPin className="mt-0.5 size-4 shrink-0" />{siteConfig.address}</p>
+            )}
             <div className="grid gap-4">
-              <a href={`tel:+${siteConfig.whatsappNumber}`} className="flex gap-3 hover:text-tomato"><Phone className="mt-0.5 size-4 shrink-0" />{siteConfig.phoneDisplay}</a>
+              {siteConfig.phoneDisplay && (
+                <a href={`tel:+${siteConfig.whatsappNumber}`} className="flex gap-3 hover:text-tomato"><Phone className="mt-0.5 size-4 shrink-0" />{siteConfig.phoneDisplay}</a>
+              )}
               <p className="flex gap-3"><Clock className="mt-0.5 size-4 shrink-0" />{t.hours}</p>
             </div>
             {siteConfig.socials.map((s) => <a key={s.url} href={s.url} target="_blank" rel="noopener noreferrer" className="hover:text-tomato">{s.label}</a>)}
@@ -62,7 +68,7 @@ export function Footer() {
         </p>
 
         <div className="mt-8 flex items-center justify-between border-t border-ink/15 pt-6 text-sm text-ink/50">
-          <p>© {new Date().getFullYear()} Slice of Life, Lefkoşa</p>
+          <p>© {new Date().getFullYear()} {siteConfig.name}, {siteConfig.city}</p>
           <a href="#home" className="group inline-flex items-center gap-2 hover:text-tomato">
             {t.footer.backTop} <ArrowUp className="size-4 transition-transform group-hover:-translate-y-0.5" />
           </a>

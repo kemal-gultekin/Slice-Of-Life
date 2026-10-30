@@ -6,7 +6,7 @@ import type { Category, MenuItem } from "@/data/menu";
 
 export type Lang = "en" | "tr";
 const dicts: Record<Lang, Dict> = { en, tr };
-const KEY = "sol-lang";
+const KEY = "ce-lang";
 
 function initialLang(): Lang {
   try {

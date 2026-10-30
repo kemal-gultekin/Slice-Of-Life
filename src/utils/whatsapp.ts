@@ -18,10 +18,10 @@ export function formatPrice(price: number | null | undefined) {
 
 export function pizzaOrderMessage(name: string, price?: number | null) {
   const p = formatPrice(price);
-  return `Hi Slice of Life! I'd like to order ${name}${p ? ` (${p})` : ""}. Could you please share the available options and delivery details?`;
+  return `Hi Crust & Ember! I'd like to order ${name}${p ? ` (${p})` : ""}. Could you please share the available options and delivery details?`;
 }
 
-export const greetingMessage = "Hi Slice of Life! I'd like to place an order. Could you share today's options and delivery details?";
+export const greetingMessage = "Hi Crust & Ember! I'd like to place an order. Could you share today's options and delivery details?";
 
 /** Localised order message: pass `t.wa.item` from useI18n(). */
 export function itemOrderMessage(
@@ -29,7 +29,7 @@ export function itemOrderMessage(
   qty: number,
   unitPrice?: number | null,
   fmt: (qty: number, name: string, total: string | null) => string = (q, n, tot) =>
-    `Hi Slice of Life! I'd like to order ${q}× ${n}${tot ? ` (${tot})` : ""}. Could you please confirm availability and delivery details?`,
+    `Hi Crust & Ember! I'd like to order ${q}× ${n}${tot ? ` (${tot})` : ""}. Could you please confirm availability and delivery details?`,
 ) {
   const total = unitPrice != null ? formatPrice(unitPrice * qty) : null;
   return fmt(qty, name, total);

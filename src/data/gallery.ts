@@ -14,5 +14,5 @@ export const gallery = [
   { src: mini, alt: "A small margarita pizza on dark slate", span: "", w: 1280, h: 1280 },
   { src: room, alt: "A warm, softly lit dining room in the evening", span: "md:col-span-2", w: 1400, h: 933 },
   { src: calzone, alt: "A calzone cut open with melted mozzarella", span: "", w: 1280, h: 1280 },
-  { src: boxOpen, alt: "A finished pizza in a Slice of Life takeaway box", span: "", w: 1400, h: 1400 },
+  { src: boxOpen, alt: "A finished pizza in a Crust & Ember takeaway box", span: "", w: 1400, h: 1400 },
 ];
